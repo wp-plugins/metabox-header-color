@@ -1,0 +1,30 @@
+=== Metabox Header Color ===
+Contributors: trepmal 
+Donate link: http://kaileylampert.com/donate/
+Tags: metabox, style, mu-compatible
+Requires at least: 2.8
+Tested up to: 2.9.2
+Stable tag: trunk
+
+Change the color for the metabox headers
+
+== Description ==
+
+Change the color for the metabox headers
+
+== Installation ==
+
+1. Upload `kl-metabox-header-color.php` to the your plugins directory (default: `/wp-content/plugins/`)
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Go to the Metabox Header Color page under Settings
+4. Enter the color hex code you'd like to use and save
+
+== Screenshots ==
+
+1. 
+2. 
+
+== Changelog ==
+
+= 1.0 =
+* Initial Release
