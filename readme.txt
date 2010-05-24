@@ -21,7 +21,7 @@ Change the color for the metabox headers
 
 == Screenshots ==
 
-1. 
+1.
 
 == Changelog ==
 
