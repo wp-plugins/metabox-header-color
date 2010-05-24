@@ -14,7 +14,7 @@ Change the color for the metabox headers
 
 == Installation ==
 
-1. Upload `kl-metabox-header-color.php` to the your plugins directory (default: `/wp-content/plugins/`)
+1. Upload the contents of the zip file to the your plugins directory (default: `/wp-content/plugins/`)
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Go to the Metabox Header Color page under Settings
 4. Enter the color hex code you'd like to use and save
@@ -22,9 +22,11 @@ Change the color for the metabox headers
 == Screenshots ==
 
 1. 
-2. 
 
 == Changelog ==
+
+= 1.1 =
+* jQuery upgrades
 
 = 1.0 =
 * Initial Release

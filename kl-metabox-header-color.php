@@ -4,7 +4,7 @@ Plugin Name: Metabox Header Color
 Plugin URI: http://trepmal.com/
 Description: Change the color for metabox headers
 Author: Kailey Lampert
-Version: 1.0
+Version: 1.1
 Author URI: http://kaileylampert.com/
 */
 /*
@@ -31,44 +31,73 @@ class KL_metaboxheadercolor {
 	function KL_metaboxheadercolor() {
 		add_action('admin_menu', array(&$this, 'menu'));
 		register_activation_hook(__FILE__,  array(&$this, 'activate'));
-    }
-
-	function activate() { add_option('kl-metabox-header-color','#99dd44'); }
-
-	function menu() {
-		add_submenu_page('options-general.php', 'Metabox Header Color', 'Metabox Header Color', 'administrator', __FILE__, array(&$this, 'page'));
+		register_uninstall_hook(__FILE__,  array(&$this, 'uninstall'));
 	}
 
+	function activate() { add_option('kl-metabox-header-color',array('bg'=>'#9df','tx'=>'#666','sh'=>'#fff')); }
+	function uninstall() { delete_option('kl-metabox-header-color'); }
+
+	function menu() {
+		$page = add_submenu_page('options-general.php', 'Metabox Header Color', 'Metabox Header Color', 'administrator', __FILE__, array(&$this, 'page'));
+		add_action('admin_print_scripts-'.$page, array(&$this, 'scripts'));
+		add_action('admin_print_styles-'.$page, array(&$this, 'styles'));
+	}
+	
+	function scripts() {
+		$plugin_path = '/'.PLUGINDIR.'/'.plugin_basename(dirname(__FILE__));
+		wp_enqueue_script('jquery');
+		wp_register_script('jquerycolorpicker',$plugin_path.'/js/colorpicker.js','jquery');
+		wp_enqueue_script('jquerycolorpicker');
+		wp_register_script('klmetaboxheadercolorinit',$plugin_path.'/js/init.js','jquerycolorpicker');
+		wp_enqueue_script('klmetaboxheadercolorinit');
+	}
+	function styles() {
+		$plugin_path = '/'.PLUGINDIR.'/'.plugin_basename(dirname(__FILE__));
+		wp_register_style('jquerycolorpicker',$plugin_path.'/css/colorpicker.css','jquery');
+		wp_enqueue_style('jquerycolorpicker');
+	}
 	function page() {
+		if (isset($_POST['submitted'])) {
+			
+			if (is_array($_POST['hex_code'])) {
+				check_admin_referer('kl-metabox-header-color_save');
+				update_option('kl-metabox-header-color',$_POST['hex_code']);
+			}
+		
+		}
 		echo '<div class="wrap">';
 		
 		echo '<h2>'.__('Choose Metabox Header Color').'</h2>';
-		if (isset($_POST['submitted'])) {
-			if (update_option('kl-metabox-header-color',$_POST['hex_code']))
-				echo '<p>'.__('Saved').'</p>';
-			else
-				echo '<p>'.__('Could not save, please try again').'</p>';
-		}
 
-		echo '<form method="post" enctype="multipart/form-data" id="logoupload">';
-
-		echo '<p><label for="hex_code">Color (hex)code: </label><input type="text" name="hex_code" id="hex_code" value="'.get_option('kl-metabox-header-color').'" /></p>';
-			  
-		echo '<p><input type="hidden" name="submitted" /><input type="submit" id="save" value="'.__('Save').'"/></p>';
 
 		$color = get_option('kl-metabox-header-color');
-		echo '<p>'.__('Currently using').': <span style="padding: 5px 10px;background:'.$color.';color:#000;">'.$color.'</span></p>';
+echo '<div class="metabox-holder">
+	<div class="postbox ">
+	<h3 class="hndle"><span>'.__('Preview changes here').'</span></h3>
+	<div class="inside">';
 
-		echo '</form>';
+		extract(get_option('kl-metabox-header-color'));
+		echo '<form method="post" style="padding:10px;">';
+		wp_nonce_field('kl-metabox-header-color_save');
 		
+		echo '<p><label for="hex_code_bg">Background Color (hex) code: </label><input type="text" name="hex_code[bg]" id="hex_code_bg" value="'.$bg.'" class="cpick" /></p>';
+		echo '<p><label for="hex_code_tx">Text Color (hex) code: </label><input type="text" name="hex_code[tx]" id="hex_code_tx" value="'.$tx.'" class="cpick"  /></p>';
+		echo '<p><label for="hex_code_sh">Shadow Color (hex) code: </label><input type="text" name="hex_code[sh]" id="hex_code_sh" value="'.$sh.'" class="cpick"  /></p>';
+		echo '<p><input type="hidden" name="submitted" /><input type="submit" id="save" value="'.__('Save').'"/></p>';
+		echo '</form>';
+
+echo '</div></div></div>';
+		echo '<p>Settings will be preserved if the plugin is deactivated. Settings will be removed if plugin is deleted.</p>';
+		echo '<p>The colorpicker is by <a href="http://www.eyecon.ro/colorpicker/">eyecon</a></p>';
 		echo '</div>';
 	}// end function
 
 	
 }//end class
 function metaboxheadercolor() {
+	extract(get_option('kl-metabox-header-color'));
 	echo '<style type="text/css">';
-	echo '.widget .widget-top, .postbox h3, .stuffbox h3 { background:'.get_option('kl-metabox-header-color').' !important; } ';
+	echo '.widget .widget-top, .postbox h3, .stuffbox h3 { background:'.$bg.' ; color:'.$tx.'; text-shadow: 0 1px 0 '.$sh.'; } ';
 	echo '</style>';
 }
 add_action('admin_head', 'metaboxheadercolor');
