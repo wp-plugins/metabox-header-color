@@ -10,7 +10,7 @@ Change the color for the metabox headers
 
 == Description ==
 
-Change the color for the metabox headers
+Change the color for the metabox headers. MU-compatible
 
 == Installation ==
 
@@ -21,7 +21,7 @@ Change the color for the metabox headers
 
 == Screenshots ==
 
-1.
+1. Background, text, and shadow color options.
 
 == Changelog ==
 
