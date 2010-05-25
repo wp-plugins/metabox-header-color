@@ -25,6 +25,9 @@ Change the color for the metabox headers. MU-compatible
 
 == Changelog ==
 
+= 1.2 =
+* Better after-save preview
+
 = 1.1 =
 * jQuery upgrades
 

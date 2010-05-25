@@ -4,7 +4,7 @@ Plugin Name: Metabox Header Color
 Plugin URI: http://trepmal.com/
 Description: Change the color for metabox headers
 Author: Kailey Lampert
-Version: 1.1
+Version: 1.2
 Author URI: http://kaileylampert.com/
 */
 /*
@@ -63,6 +63,13 @@ class KL_metaboxheadercolor {
 				check_admin_referer('kl-metabox-header-color_save');
 				update_option('kl-metabox-header-color',$_POST['hex_code']);
 			}
+				
+			/* this little block just allows the colors to be viewable after saving 
+				since the actual options aren't updated till after the stylesheet loads */
+			extract(get_option('kl-metabox-header-color'));
+			echo '<style type="text/css">';
+			echo '.widget .widget-top, .postbox h3, .stuffbox h3 { background:'.$bg.' ; color:'.$tx.'; text-shadow: 0 1px 0 '.$sh.'; } ';
+			echo '</style>';
 		
 		}
 		echo '<div class="wrap">';
