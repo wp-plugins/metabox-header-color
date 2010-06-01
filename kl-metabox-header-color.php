@@ -4,7 +4,7 @@ Plugin Name: Metabox Header Color
 Plugin URI: http://trepmal.com/plugins/metabox-header-color/
 Description: Change the color for metabox headers
 Author: Kailey Lampert
-Version: 1.2
+Version: 1.3
 Author URI: http://kaileylampert.com/
 */
 /*
@@ -104,7 +104,7 @@ echo '</div></div></div>';
 function metaboxheadercolor() {
 	extract(get_option('kl-metabox-header-color'));
 	echo '<style type="text/css">';
-	echo '.widget .widget-top, .postbox h3, .stuffbox h3 { background:'.$bg.' ; color:'.$tx.'; text-shadow: 0 1px 0 '.$sh.'; } ';
+	echo '.widget .widget-top, .postbox h3, .stuffbox h3 { background:'.$bg.' !important; color:'.$tx.' !important; text-shadow: 0 1px 0 '.$sh.' !important; } ';
 	echo '</style>';
 }
 add_action('admin_head', 'metaboxheadercolor');
