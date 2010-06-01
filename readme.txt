@@ -25,6 +25,9 @@ Change the color for the metabox headers. MU-compatible
 
 == Changelog ==
 
+= 1.4 =
+* remembered why I hadn't added '!important' to css before - it messes things up. this version uses better css selectors
+
 = 1.3 =
 * added '!important' to css to ensure that that the styles will apply on all screens
 
