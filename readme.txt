@@ -3,7 +3,7 @@ Contributors: trepmal
 Donate link: http://kaileylampert.com/donate/
 Tags: metabox, style, mu-compatible
 Requires at least: 2.8
-Tested up to: 2.9.2
+Tested up to: 3.0.1
 Stable tag: trunk
 
 Change the color for the metabox headers
