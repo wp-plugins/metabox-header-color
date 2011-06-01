@@ -3,7 +3,7 @@ Contributors: trepmal
 Donate link: http://kaileylampert.com/donate/
 Tags: metabox, style, mu-compatible
 Requires at least: 2.8
-Tested up to: 3.0.1
+Tested up to: 3.2-beta2
 Stable tag: trunk
 
 Change the color for the metabox headers
@@ -12,11 +12,7 @@ Change the color for the metabox headers
 
 Change the color for the metabox headers. MU-compatible
 
-* [other plugins by this author](http://wordpress.org/extend/plugins/profile/trepmal)
-* [author's profile](http://profiles.wordpress.org/users/trepmal/)
-* [author's forum profile](http://wordpress.org/support/profile/trepmal)
-* [donate](http://kaileylampert.com/donate/)
-* [author's website](http://kaileylampert.com)
+* [I'm on twitter](http://twitter.com/trepmal)
 
 == Installation ==
 
