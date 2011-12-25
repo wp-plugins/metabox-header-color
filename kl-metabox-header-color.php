@@ -4,11 +4,11 @@ Plugin Name: Metabox Header Color
 Plugin URI: http://trepmal.com/plugins/metabox-header-color/
 Description: Change the color for metabox headers
 Author: Kailey Lampert
-Version: 1.4
+Version: 1.5
 Author URI: http://kaileylampert.com/
 */
 /*
-    Copyright (C) 2010  Kailey Lampert
+    Copyright (C) 2011  Kailey Lampert
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ Author URI: http://kaileylampert.com/
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$KL_metaboxheadercolor = new KL_metaboxheadercolor();
+new KL_metaboxheadercolor();
 
 class KL_metaboxheadercolor {
 
@@ -33,7 +33,9 @@ class KL_metaboxheadercolor {
 		add_action( 'admin_head', array( &$this, 'metaboxheadercolor' ) );
 		add_action( 'admin_menu', array( &$this, 'menu' ) );
 	}
-	function activate() { add_option( 'kl-metabox-header-color',array( 'bg' => '#9df', 'tx' => '#666', 'sh' => '#fff' ) ); }
+	function activate() { 
+		add_option( 'kl-metabox-header-color',array( 'bg' => '#9df', 'tx' => '#666', 'sh' => '#fff' ) );
+	}
 
 	function metaboxheadercolor() {
 		if ( isset( $_POST[ 'submitted' ] ) ) {	
@@ -44,7 +46,17 @@ class KL_metaboxheadercolor {
 		}
 		extract( get_option( 'kl-metabox-header-color' ) );
 		?><style type="text/css">
-		.widget .widget-top, .postbox h3, .stuffbox h3, .ui-sortable .postbox h3 { background: <?php echo $bg; ?>; color: <?php echo $tx; ?>; text-shadow: 0 1px 0 <?php echo $sh; ?>; }
+		.widgets-sortables .widget-top, 
+		.postbox h3, 
+		.stuffbox h3, 
+		.ui-sortable .postbox h3 { 
+			background: <?php echo $bg; ?>; 
+			color: <?php echo $tx; ?>; 
+			text-shadow: 0 1px 0 <?php echo $sh; ?>;
+		}
+		#widget-list .widget-top {
+			color: auto;
+		}
 		</style><?php
 	}
 
