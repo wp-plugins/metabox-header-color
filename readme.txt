@@ -1,10 +1,10 @@
 === Metabox Header Color ===
-Contributors: trepmal 
+Contributors: trepmal
 Donate link: http://kaileylampert.com/donate/
 Tags: metabox, style, mu-compatible
 Requires at least: 2.8
-Tested up to: 3.3
-Stable tag: trunk
+Tested up to: 3.5
+Stable tag: 1.5
 
 Change the color for the metabox headers
 
@@ -26,6 +26,10 @@ Change the color for the metabox headers.
 1. Background, text, and shadow color options.
 
 == Changelog ==
+
+= 1.6 =
+* use core color picker
+* translatable
 
 = 1.5 =
 * minor css tweak. due to low number of downloads, this may be the plugin's last update
